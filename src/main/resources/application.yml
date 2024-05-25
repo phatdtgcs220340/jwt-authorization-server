@@ -1,0 +1,13 @@
+spring:
+  application:
+    name: authorization-server
+  datasource:
+    url: jdbc:postgresql://localhost:15432/authorization-server-db
+    username: phatdo
+    password: bimatnha
+  jpa:
+    hibernate:
+      ddl-auto: create
+      show-sql: true
+server:
+  port: 9000
