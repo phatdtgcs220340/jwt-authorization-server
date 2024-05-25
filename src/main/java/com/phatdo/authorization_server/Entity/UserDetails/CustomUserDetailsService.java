@@ -44,4 +44,8 @@ public class CustomUserDetailsService implements UserDetailsService {
         return userRepository.save(new User(fullName, username, passwordEncoder.encode(password)));
 
     }
+
+    public void deleteUser(User user) {
+        userRepository.delete(user);
+    }
 }
