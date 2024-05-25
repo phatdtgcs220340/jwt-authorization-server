@@ -14,9 +14,12 @@ import lombok.RequiredArgsConstructor;
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "user_id")
     private int userId;
+    @Column(name = "full_name")
     private final String fullName;
-    @Column(unique = true)
+    @Column(name = "username", unique = true)
     private final String username;
+    @Column(name = "password")
     private final String password;
 }
