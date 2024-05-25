@@ -10,6 +10,9 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import com.phatdo.authorization_server.Entity.User.User;
 
+import lombok.Data;
+
+@Data
 public class CustomUserDetails implements UserDetails {
     private User user;
 
