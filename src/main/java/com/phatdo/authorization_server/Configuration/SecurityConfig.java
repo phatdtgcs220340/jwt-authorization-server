@@ -1,5 +1,6 @@
 package com.phatdo.authorization_server.Configuration;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -14,6 +15,9 @@ import org.springframework.security.web.SecurityFilterChain;
 
 import com.phatdo.authorization_server.Entity.User.UserRepository;
 import com.phatdo.authorization_server.Entity.UserDetails.CustomUserDetailsService;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
+import org.springframework.web.filter.CorsFilter;
 
 @Configuration
 public class SecurityConfig {
@@ -32,7 +36,7 @@ public class SecurityConfig {
 
     @Bean
     @Order(2)
-    public SecurityFilterChain defaultfilterChain(HttpSecurity http) throws Exception {
+    public SecurityFilterChain defaultFilterChain(HttpSecurity http) throws Exception {
         http
                 .formLogin(Customizer.withDefaults())
                 .authorizeHttpRequests(c -> c.anyRequest().authenticated())
@@ -43,5 +47,17 @@ public class SecurityConfig {
                         .deleteCookies("JSESSIONID"))
                 .csrf(AbstractHttpConfigurer::disable);
         return http.build();
+    }
+
+    @Bean
+    public CorsFilter corsFilter(){
+        CorsConfiguration config = new CorsConfiguration();
+        config.addAllowedOrigin("http://localhost:5173");
+        config.addAllowedMethod("*");
+        config.addAllowedHeader("*");
+
+        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+        source.registerCorsConfiguration("/**", config);
+        return new CorsFilter(source);
     }
 }
