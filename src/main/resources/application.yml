@@ -11,3 +11,8 @@ spring:
       show-sql: true
 server:
   port: 9000
+  servlet:
+    session:
+      cookie:
+        same-site: none
+        secure: true
