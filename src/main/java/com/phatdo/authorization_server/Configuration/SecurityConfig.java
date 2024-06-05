@@ -1,6 +1,7 @@
 package com.phatdo.authorization_server.Configuration;
 
 import java.util.Arrays;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -21,9 +22,12 @@ import org.springframework.web.filter.CorsFilter;
 
 @Configuration
 public class SecurityConfig {
-    @Autowired
-    private UserRepository userRepository;
+    private final UserRepository userRepository;
 
+    @Autowired
+    public SecurityConfig(UserRepository userRepository) {
+        this.userRepository = userRepository;
+    }
     @Bean
     public UserDetailsService userDetailsService() {
         return new CustomUserDetailsService(userRepository, passwordEncoder());
@@ -42,6 +46,7 @@ public class SecurityConfig {
                         .loginProcessingUrl("/api/login")
                         .defaultSuccessUrl("/authorization"))
                 .authorizeHttpRequests(c -> c
+                        .requestMatchers("/api/register").permitAll()
                         .anyRequest().authenticated())
                 .csrf(AbstractHttpConfigurer::disable);
         return http.build();
@@ -52,7 +57,7 @@ public class SecurityConfig {
         CorsConfiguration config = new CorsConfiguration();
         config.addAllowedOrigin("http://localhost:5173");
         config.addAllowedMethod("*");
-        config.setAllowedHeaders(Arrays.asList("*"));
+        config.setAllowedHeaders(List.of("*"));
         config.setAllowCredentials(true);
         config.setMaxAge(3600L);
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();

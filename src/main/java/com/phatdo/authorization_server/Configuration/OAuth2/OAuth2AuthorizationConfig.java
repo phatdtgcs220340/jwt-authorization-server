@@ -27,9 +27,12 @@ import org.springframework.security.web.authentication.LoginUrlAuthenticationEnt
 
 @Configuration
 public class OAuth2AuthorizationConfig {
-        @Autowired
-        private PasswordEncoder passwordEncoder;
+        private final PasswordEncoder passwordEncoder;
 
+        @Autowired
+        public OAuth2AuthorizationConfig(PasswordEncoder passwordEncoder) {
+                this.passwordEncoder = passwordEncoder;
+        }
         @Bean
         @Order(Ordered.HIGHEST_PRECEDENCE)
         public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {

@@ -19,8 +19,8 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @Service
 public class CustomUserDetailsService implements UserDetailsService {
-    private UserRepository userRepository;
-    private PasswordEncoder passwordEncoder;
+    private final UserRepository userRepository;
+    private final PasswordEncoder passwordEncoder;
 
     @Autowired
     public CustomUserDetailsService(UserRepository userRepository, PasswordEncoder passwordEncoder) {
@@ -35,13 +35,13 @@ public class CustomUserDetailsService implements UserDetailsService {
         return new CustomUserDetails(user);
     }
 
-    public User saveUser(String fullName, String username, String password) throws CustomException {
-        log.info("Save user: " + username);
+    public void saveUser(String fullName, String username, String password) throws CustomException {
+        log.info("Save user: {}", username);
         Optional<User> optUser = userRepository.findByUsername(username);
         if (optUser.isPresent()) {
-            throw new CustomException(CustomError.USEREXIST);
+            throw new CustomException(CustomError.USER_EXIST);
         }
-        return userRepository.save(new User(fullName, username, passwordEncoder.encode(password)));
+        userRepository.save(new User(fullName, username, passwordEncoder.encode(password)));
 
     }
 
