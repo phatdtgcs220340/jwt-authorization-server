@@ -1,21 +1,17 @@
 package com.phatdo.authorization_server.Exception;
 
+import lombok.Getter;
+
+@Getter
 public enum CustomError {
-    USEREXIST("Unique user constraint has been violated", 500);
+    USER_EXIST("Unique user constraint has been violated", 500);
 
-    private String message;
-    private int code;
+    private final String message;
+    private final int code;
 
-    private CustomError(String message, int code) {
+    CustomError(String message, int code) {
         this.message = message;
         this.code = code;
     }
 
-    public String getMessage() {
-        return this.message;
-    }
-
-    public int getCode() {
-        return this.code;
-    }
 }
