@@ -23,8 +23,8 @@ public class OAuth2CustomToken {
                 User user = ((CustomUserDetails) userService
                         .loadUserByUsername(username))
                         .getUser();
-                String fullname = user.getFullName();
-                claims.put("fullName", fullname);
+                String fullName = user.getFullName();
+                claims.put("fullName", fullName);
             });
         };
     }
