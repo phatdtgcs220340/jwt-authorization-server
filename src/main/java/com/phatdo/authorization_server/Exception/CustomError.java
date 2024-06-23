@@ -1,17 +1,18 @@
 package com.phatdo.authorization_server.Exception;
 
 import lombok.Getter;
+import org.springframework.http.HttpStatus;
 
 @Getter
 public enum CustomError {
-    USER_EXIST("Unique user constraint has been violated", 500);
+    USER_EXIST("Unique user constraint has been violated", HttpStatus.CONFLICT);
 
     private final String message;
-    private final int code;
+    private final HttpStatus status;
 
-    CustomError(String message, int code) {
+    CustomError(String message, HttpStatus httpStatus) {
         this.message = message;
-        this.code = code;
+        this.status = httpStatus;
     }
 
 }
