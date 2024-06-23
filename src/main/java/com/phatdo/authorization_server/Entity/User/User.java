@@ -20,15 +20,12 @@ public class User {
     @Column(name = "user_id")
     private int userId;
 
-    @NotBlank
     @Column(name = "full_name")
     private final String fullName;
 
-    @Email
     @Column(name = "username", unique = true)
     private final String username;
 
-    @Size(min = 8, message = "Password must be at least 8 characters long")
     @Column(name = "password")
     private final String password;
 }
