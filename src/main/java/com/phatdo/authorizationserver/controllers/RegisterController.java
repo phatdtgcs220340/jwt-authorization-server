@@ -24,15 +24,10 @@ public class RegisterController {
     }
 
     @PostMapping
-    public ResponseEntity<TypeDTO> register(@RequestBody @Valid RegisterDTO form) {
-        try {
-            userService.saveUser(form.fullName(),
+    public ResponseEntity<TypeDTO> register(@RequestBody @Valid RegisterDTO form) throws CustomException {
+        userService.saveUser(form.fullName(),
                     form.username(),
                     form.password());
-            return ResponseEntity.ok().build();
-        }
-        catch (CustomException e) {
-            return new ResponseEntity<>(ErrorMapper.toDto(e), e.getStatus());
-        }
+        return ResponseEntity.ok().build();
     }
 }
