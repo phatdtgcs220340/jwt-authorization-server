@@ -1,4 +1,4 @@
-package com.phatdo.authorizationserver.Entity.User;
+package com.phatdo.authorizationserver.models.users;
 
 import java.util.Optional;
 

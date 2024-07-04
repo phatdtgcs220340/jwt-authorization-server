@@ -1,4 +1,4 @@
-package com.phatdo.authorizationserver.Configuration.Jwt;
+package com.phatdo.authorizationserver.configuration.jwt;
 
 import java.security.KeyPair;
 import java.security.KeyPairGenerator;

@@ -1,4 +1,4 @@
-package com.phatdo.authorizationserver.Configuration.AuthenticationProvider;
+package com.phatdo.authorizationserver.configuration.provider;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationProvider;
@@ -9,7 +9,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
-import com.phatdo.authorizationserver.Entity.UserDetails.CustomUserDetailsService;
+import com.phatdo.authorizationserver.authentication.CustomUserDetailsService;
 
 @Component
 public class CustomAuthenticationProvider implements AuthenticationProvider {

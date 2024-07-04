@@ -1,6 +1,6 @@
 package com.phatdo.authorizationserver.mappers;
 
-import com.phatdo.authorizationserver.Exception.CustomException;
+import com.phatdo.authorizationserver.exception.CustomException;
 import com.phatdo.authorizationserver.dto.response.ErrorDTO;
 
 public class ErrorMapper {

@@ -1,4 +1,4 @@
-package com.phatdo.authorizationserver.Configuration.OAuth2;
+package com.phatdo.authorizationserver.configuration.oauth2;
 
 import java.time.Duration;
 import java.util.UUID;

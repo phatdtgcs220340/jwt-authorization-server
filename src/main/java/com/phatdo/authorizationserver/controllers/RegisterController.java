@@ -1,10 +1,11 @@
-package com.phatdo.authorizationserver.Controller;
+package com.phatdo.authorizationserver.controllers;
 
-import com.phatdo.authorizationserver.Entity.UserDetails.CustomUserDetailsService;
-import com.phatdo.authorizationserver.Exception.CustomException;
+import com.phatdo.authorizationserver.authentication.CustomUserDetailsService;
+import com.phatdo.authorizationserver.exception.CustomException;
 import com.phatdo.authorizationserver.dto.request.RegisterDTO;
 import com.phatdo.authorizationserver.dto.response.TypeDTO;
 import com.phatdo.authorizationserver.mappers.ErrorMapper;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -23,7 +24,7 @@ public class RegisterController {
     }
 
     @PostMapping
-    public ResponseEntity<TypeDTO> register(@RequestBody RegisterDTO form) {
+    public ResponseEntity<TypeDTO> register(@RequestBody @Valid RegisterDTO form) {
         try {
             userService.saveUser(form.fullName(),
                     form.username(),

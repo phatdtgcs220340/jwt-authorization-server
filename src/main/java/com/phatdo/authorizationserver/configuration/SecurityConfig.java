@@ -1,4 +1,4 @@
-package com.phatdo.authorizationserver.Configuration;
+package com.phatdo.authorizationserver.configuration;
 
 import java.util.List;
 
@@ -13,8 +13,8 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
-import com.phatdo.authorizationserver.Entity.User.UserRepository;
-import com.phatdo.authorizationserver.Entity.UserDetails.CustomUserDetailsService;
+import com.phatdo.authorizationserver.models.users.UserRepository;
+import com.phatdo.authorizationserver.authentication.CustomUserDetailsService;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.filter.CorsFilter;
@@ -43,7 +43,8 @@ public class SecurityConfig {
         http
                 .formLogin(c -> c
                         .loginProcessingUrl("/api/login")
-                        .defaultSuccessUrl("/authorization"))
+                        .defaultSuccessUrl("/authorization")
+                        )
                 .authorizeHttpRequests(c -> c
                         .requestMatchers("/api/register").permitAll()
                         .anyRequest().authenticated())
@@ -54,7 +55,7 @@ public class SecurityConfig {
     @Bean
     public CorsFilter corsFilter() {
         CorsConfiguration config = new CorsConfiguration();
-        config.addAllowedOrigin("http://localhost:5173");
+        config.addAllowedOrigin("http://localhost:4200");
         config.addAllowedMethod("*");
         config.setAllowedHeaders(List.of("*"));
         config.setAllowCredentials(true);
@@ -63,5 +64,4 @@ public class SecurityConfig {
         source.registerCorsConfiguration("/**", config);
         return new CorsFilter(source);
     }
-
 }

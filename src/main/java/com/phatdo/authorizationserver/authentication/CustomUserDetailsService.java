@@ -1,4 +1,4 @@
-package com.phatdo.authorizationserver.Entity.UserDetails;
+package com.phatdo.authorizationserver.authentication;
 
 import java.util.Optional;
 
@@ -9,10 +9,10 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import com.phatdo.authorizationserver.Entity.User.User;
-import com.phatdo.authorizationserver.Entity.User.UserRepository;
-import com.phatdo.authorizationserver.Exception.CustomError;
-import com.phatdo.authorizationserver.Exception.CustomException;
+import com.phatdo.authorizationserver.models.users.User;
+import com.phatdo.authorizationserver.models.users.UserRepository;
+import com.phatdo.authorizationserver.exception.CustomError;
+import com.phatdo.authorizationserver.exception.CustomException;
 
 import lombok.extern.slf4j.Slf4j;
 
