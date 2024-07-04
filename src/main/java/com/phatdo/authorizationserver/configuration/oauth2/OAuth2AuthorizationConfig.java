@@ -4,6 +4,7 @@ import java.time.Duration;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.Ordered;
@@ -29,6 +30,13 @@ import org.springframework.security.web.authentication.LoginUrlAuthenticationEnt
 public class OAuth2AuthorizationConfig {
         private final PasswordEncoder passwordEncoder;
 
+        @Value("${oauth2-client.client-id}")
+        private String clientId;
+        @Value("${oauth2-client.client-secret}")
+        private String clientSecret;
+        @Value("${oauth2-client.redirect-uri}")
+        private String redirectUri;
+
         @Autowired
         public OAuth2AuthorizationConfig(PasswordEncoder passwordEncoder) {
                 this.passwordEncoder = passwordEncoder;
@@ -49,15 +57,15 @@ public class OAuth2AuthorizationConfig {
         public RegisteredClientRepository registeredClientRepository() {
                 RegisteredClient registeredClient = RegisteredClient
                                 .withId(UUID.randomUUID().toString())
-                                .clientId("client")
-                                .clientSecret(passwordEncoder.encode("secret"))
+                                .clientId(clientId)
+                                .clientSecret(passwordEncoder.encode(clientSecret))
                                 .clientAuthenticationMethod(
                                                 ClientAuthenticationMethod.CLIENT_SECRET_BASIC)
                                 .authorizationGrantType(
                                                 AuthorizationGrantType.AUTHORIZATION_CODE)
                                 .authorizationGrantType(
                                                 AuthorizationGrantType.REFRESH_TOKEN)
-                                .redirectUri("http://localhost:5173/authorized")
+                                .redirectUri(redirectUri)
                                 .scope(OidcScopes.OPENID)
                                 .tokenSettings(TokenSettings.builder()
                                                 .accessTokenTimeToLive(Duration.ofMinutes(15))
