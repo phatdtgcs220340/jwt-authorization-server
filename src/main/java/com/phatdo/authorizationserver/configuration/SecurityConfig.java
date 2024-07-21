@@ -3,6 +3,7 @@ package com.phatdo.authorizationserver.configuration;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.annotation.Order;
@@ -21,12 +22,15 @@ import org.springframework.web.filter.CorsFilter;
 
 @Configuration
 public class SecurityConfig {
+    @Value("${oauth2-client.domain}")
+    private String clientDomain;
     private final UserRepository userRepository;
 
     @Autowired
     public SecurityConfig(UserRepository userRepository) {
         this.userRepository = userRepository;
     }
+
     @Bean
     public UserDetailsService userDetailsService() {
         return new CustomUserDetailsService(userRepository, passwordEncoder());
@@ -55,7 +59,7 @@ public class SecurityConfig {
     @Bean
     public CorsFilter corsFilter() {
         CorsConfiguration config = new CorsConfiguration();
-        config.addAllowedOrigin("http://localhost:4200");
+        config.addAllowedOrigin(clientDomain);
         config.addAllowedMethod("*");
         config.setAllowedHeaders(List.of("*"));
         config.setAllowCredentials(true);
