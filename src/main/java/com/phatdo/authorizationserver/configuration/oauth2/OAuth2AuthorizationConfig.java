@@ -41,6 +41,7 @@ public class OAuth2AuthorizationConfig {
         public OAuth2AuthorizationConfig(PasswordEncoder passwordEncoder) {
                 this.passwordEncoder = passwordEncoder;
         }
+
         @Bean
         @Order(Ordered.HIGHEST_PRECEDENCE)
         public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {

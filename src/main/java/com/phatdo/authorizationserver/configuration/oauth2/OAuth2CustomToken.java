@@ -12,9 +12,12 @@ import com.phatdo.authorizationserver.authentication.CustomUserDetailsService;
 
 @Configuration
 public class OAuth2CustomToken {
-    @Autowired
-    private CustomUserDetailsService userService;
+    private final CustomUserDetailsService userService;
 
+    @Autowired
+    public OAuth2CustomToken(CustomUserDetailsService customUserDetailsService) {
+        this.userService = customUserDetailsService;
+    }
     @Bean
     public OAuth2TokenCustomizer<JwtEncodingContext> jwtCustomizer() {
         return context -> {
