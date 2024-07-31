@@ -8,7 +8,7 @@ import org.springframework.security.oauth2.server.authorization.token.OAuth2Toke
 
 import com.phatdo.authorizationserver.models.users.User;
 import com.phatdo.authorizationserver.authentication.CustomUserDetails;
-import com.phatdo.authorizationserver.authentication.CustomUserDetailsService;
+import com.phatdo.authorizationserver.services.CustomUserDetailsService;
 
 @Configuration
 public class OAuth2CustomToken {
