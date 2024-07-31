@@ -38,3 +38,4 @@ out/
 
 ### env
 /src/main/resources/application-oauth2.yml
+/.env
