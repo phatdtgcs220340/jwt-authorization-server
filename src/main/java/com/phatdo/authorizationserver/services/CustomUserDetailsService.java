@@ -1,7 +1,8 @@
-package com.phatdo.authorizationserver.authentication;
+package com.phatdo.authorizationserver.services;
 
 import java.util.Optional;
 
+import com.phatdo.authorizationserver.authentication.CustomUserDetails;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -10,7 +11,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.phatdo.authorizationserver.models.users.User;
-import com.phatdo.authorizationserver.models.users.UserRepository;
+import com.phatdo.authorizationserver.repositories.UserRepository;
 import com.phatdo.authorizationserver.exception.CustomError;
 import com.phatdo.authorizationserver.exception.CustomException;
 
