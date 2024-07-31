@@ -8,15 +8,14 @@ spring:
   jpa:
     hibernate:
       ddl-auto: create
-      show-sql: true
-  profiles:
-    include:
-      - oauth2
   data:
     redis:
       host: redis
       port: 6379
       password: ${REDIS_HOST_PASSWORD}
+  profiles:
+    include:
+      - oauth2
 server:
   port: 9000
   servlet:

@@ -1,0 +1,5 @@
+oauth2-client:
+  client-id : ${OAUTH2_CLIENT_ID}
+  client-secret : ${OAUTH2_CLIENT_SECRET}
+  redirect-uri : ${OAUTH2_REDIRECT_URI}
+  domain : ${CLIENT}
