@@ -1,5 +1,6 @@
 package com.phatdo.authorizationserver.controllers;
 
+import com.phatdo.authorizationserver.dto.request.LogoutDTO;
 import com.phatdo.authorizationserver.services.BlackListService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -17,8 +18,8 @@ public class LogoutController {
 
     @ResponseStatus(HttpStatus.OK)
     @PostMapping
-    public String logout(@RequestParam String refreshToken) {
-        blackListService.addToken(refreshToken);
+    public String logout(@RequestBody LogoutDTO dto) {
+        blackListService.addToken(dto.refreshToken());
         return "Logged out successfully";
     }
 }
