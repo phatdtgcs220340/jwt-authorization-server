@@ -37,16 +37,13 @@ public class CustomUserDetailsService implements UserDetailsService {
     }
 
     public void saveUser(String fullName, String username, String password) throws CustomException {
-        log.info("Save user: {}", username);
         Optional<User> optUser = userRepository.findByUsername(username);
         if (optUser.isPresent()) {
             throw new CustomException(CustomError.USER_EXIST);
         }
-        userRepository.save(new User(fullName, username, passwordEncoder.encode(password)));
-
+        User user = new User(fullName, username, passwordEncoder.encode(password));
+        user.setAvatarUrl("https://www.shutterstock.com/image-vector/blank-avatar-photo-place-holder-600nw-1095249842.jpg");
+        userRepository.save(user);
     }
 
-    public void deleteUser(User user) {
-        userRepository.delete(user);
-    }
 }
