@@ -14,8 +14,8 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
-import com.phatdo.authorizationserver.models.users.UserRepository;
-import com.phatdo.authorizationserver.authentication.CustomUserDetailsService;
+import com.phatdo.authorizationserver.repositories.UserRepository;
+import com.phatdo.authorizationserver.services.CustomUserDetailsService;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.filter.CorsFilter;

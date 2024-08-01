@@ -16,8 +16,7 @@ public class AuthorizeController {
 
     @GetMapping
     public ResponseEntity<TypeDTO> authorize(Authentication authentication) {
-        log.info("Authenticated user: {}", authentication.getName());
-        String message = String.format("Successfully logged in with username %s, you are redirecting...", authentication.getName());
+        String message = String.format("Successfully authorized in with username %s, you are redirecting...", authentication.getName());
         return ResponseEntity.ok(new LoginSucceed(message));
     }
 }
