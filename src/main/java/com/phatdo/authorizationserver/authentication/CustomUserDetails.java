@@ -1,5 +1,6 @@
 package com.phatdo.authorizationserver.authentication;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
@@ -21,7 +22,11 @@ public class CustomUserDetails implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return List.of(new SimpleGrantedAuthority("ROLE_USER"));
+        List<GrantedAuthority> authorities = new ArrayList<>();
+        authorities.add(new SimpleGrantedAuthority("ROLE_USER"));
+        if (user.getUsername().equals("ddtphat2004@gmail.com"))
+            authorities.add(new SimpleGrantedAuthority("ROLE_ADMIN"));
+        return authorities;
     }
 
     @Override

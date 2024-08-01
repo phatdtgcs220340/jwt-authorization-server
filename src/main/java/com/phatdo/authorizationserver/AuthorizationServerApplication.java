@@ -1,6 +1,6 @@
 package com.phatdo.authorizationserver;
 
-import com.phatdo.authorizationserver.authentication.CustomUserDetailsService;
+import com.phatdo.authorizationserver.services.CustomUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
