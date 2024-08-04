@@ -15,7 +15,9 @@ import com.phatdo.authorizationserver.models.users.User;
 import com.phatdo.authorizationserver.authentication.CustomUserDetails;
 import com.phatdo.authorizationserver.services.CustomUserDetailsService;
 
+import java.util.Collections;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 @Configuration
 public class OAuth2CustomToken {
@@ -38,6 +40,12 @@ public class OAuth2CustomToken {
                     OidcUserInfo userInfo = userInfoService.loadUser(user);
                     claims.putAll(userInfo.getClaims());
                 }
+
+                Set<String> authorities = AuthorityUtils.authorityListToSet(context.getPrincipal().getAuthorities())
+                            .stream()
+                            .map(c -> c.replaceFirst("^ROLE_", ""))
+                            .collect(Collectors.collectingAndThen(Collectors.toSet(), Collections::unmodifiableSet));
+                claims.put("roles", authorities);
             });
     }
 }
