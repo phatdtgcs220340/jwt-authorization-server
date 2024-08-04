@@ -1,8 +1,7 @@
 package com.phatdo.authorizationserver.authentication;
 
-import java.util.ArrayList;
 import java.util.Collection;
-import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -22,11 +21,10 @@ public class CustomUserDetails implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        List<GrantedAuthority> authorities = new ArrayList<>();
-        authorities.add(new SimpleGrantedAuthority("ROLE_USER"));
-        if (user.getUsername().equals("ddtphat2004@gmail.com"))
-            authorities.add(new SimpleGrantedAuthority("ROLE_ADMIN"));
-        return authorities;
+        return user.getRoles().stream()
+                .map(r -> new SimpleGrantedAuthority(r.toString()))
+                .distinct()
+                .collect(Collectors.toList());
     }
 
     @Override
